@@ -1,26 +1,100 @@
-int limit = 500;
+int orientation = 90;
 public void setup()
 {
-  size(500,500);
- 
-}
-public void draw()
-{
+  size(600,500);
   background(0);
   stroke(255);
-  dragonCurve(1);
+  dragonCurve(makeCurve(10), 150,270);
+ 
 }
-public String dragonCurve(int dragNum) {
+public void draw(){}
+
+public void dragonCurve(String nums, int x, int y){
+  line(x,y, x, y-10);
+  y=y-10;
+
+  for(int i= 0; i < nums.length(); i++){
+    String sNums = nums.substring(i,i+1);
+    double dNum = Double.parseDouble(sNums);
+
+    if(dNum == 1){
+      if(orientation == 90)
+      {
+        line(x,y, x+10,y);
+    
+        x = x+10;
+        orientation = 0;
+      }
+      else if(orientation == 0)
+      {
+        line(x,y, x,y+10);
+    
+        y=y+10;
+        orientation = 270;
+      }
+    else if(orientation == 270)
+      {
+      line(x,y, x-10,y);
+    
+        x = x-10;
+        orientation = 180;
+      }
+      else if(orientation == 180)
+      {
+        line(x,y, x,y-10);
+    
+        y=y-10;
+        orientation = 90;
+      }
+    }
+
+  if (dNum == 0)
+  {    
+    if(orientation == 90)
+      {
+        line(x,y, x-10,y);
+    
+        x = x-10;
+        orientation = 180;
+      }
+    else if(orientation == 0)
+      {
+        line(x,y, x,y-10);
+    
+        y=y-10;
+        orientation = 90;
+      }
+    else if(orientation == 270)
+      {
+      line(x,y, x+10,y);
+    
+        x = x+10;
+        orientation = 0;
+      }
+     else if(orientation == 180)
+      {
+        line(x,y, x,y+10);
+    
+        y=y+10;
+        orientation = 270;
+      }
+    }
+  }
+ }
+
+
+
+public String makeCurve(int dragNum) {
   
   if(dragNum == 1)
   {
-    line(5,5,10,10);
-    line(10,10,20,20);  
+    return "1";
   }
 
   
   else{
-    return dragonCurve(dragNum-1) + "1" + reverse(onesComplement(dragonCurve(dragNum-1))) ;
+    return makeCurve(dragNum-1) + "1" + reverse(onesComplement(makeCurve(dragNum-1))) ;
+
   }
 }
 
