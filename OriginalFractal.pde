@@ -1,4 +1,4 @@
-import java.lang.Double;
+
 
 int orientation = 90;
 public void setup()
@@ -17,9 +17,8 @@ public void dragonCurve(String nums, int x, int y){
 
   for(int i= 0; i < nums.length(); i++){
     String sNums = nums.substring(i,i+1);
-    double dNum = Double.parseDouble(sNums);
 
-    if(dNum == 1){
+    if(sNums.equals("1")){
       if(orientation == 90)
       {
         line(x,y, x+10,y);
@@ -50,7 +49,7 @@ public void dragonCurve(String nums, int x, int y){
       }
     }
 
-  if (dNum == 0)
+  if (sNums.equals("0"))
   {    
     if(orientation == 90)
       {
